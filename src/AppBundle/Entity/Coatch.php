@@ -3,14 +3,15 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * Coatch
  *
  * @ORM\Table(name="coatchs")
- * @ORM\Entity()
+ * @ORM\Entity
  */
-class Coatch
+class Coatch extends BaseUser
 {
     /**
      * @var int
@@ -19,15 +20,19 @@ class Coatch
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-
+    protected $id;
+    
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=20)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Team", mappedBy="coatch")
+     * @var UserBundle\Entity\Team[]
      */
-    private $name;
+    private $teams;
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -40,27 +45,36 @@ class Coatch
     }
 
     /**
-     * Set name
+     * Add team
      *
-     * @param string $name
+     * @param \AppBundle\Entity\Team $team
      *
      * @return Coatch
      */
-    public function setName($name)
+    public function addTeam(\AppBundle\Entity\Team $team)
     {
-        $this->name = $name;
+        $this->teams[] = $team;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Remove team
      *
-     * @return string
+     * @param \AppBundle\Entity\Team $team
      */
-    public function getName()
+    public function removeTeam(\AppBundle\Entity\Team $team)
     {
-        return $this->name;
+        $this->teams->removeElement($team);
+    }
+
+    /**
+     * Get teams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTeams()
+    {
+        return $this->teams;
     }
 }
-

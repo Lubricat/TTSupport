@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Race
  *
- * @ORM\Table(name="race")
+ * @ORM\Table(name="races")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\RaceRepository")
  */
 class Race
@@ -41,7 +41,12 @@ class Race
      * @ORM\Column(name="apo_price", type="integer")
      */
     private $apoPrice;
-
+    
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Player", mappedBy="race")
+     * @var UserBundle\Entity\Player[]
+     */
+    private $players;
 
     /**
      * Get id
@@ -124,5 +129,45 @@ class Race
     {
         return $this->apoPrice;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->players = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add player
+     *
+     * @param \AppBundle\Entity\Player $player
+     *
+     * @return Race
+     */
+    public function addPlayer(\AppBundle\Entity\Player $player)
+    {
+        $this->players[] = $player;
+
+        return $this;
+    }
+
+    /**
+     * Remove player
+     *
+     * @param \AppBundle\Entity\Player $player
+     */
+    public function removePlayer(\AppBundle\Entity\Player $player)
+    {
+        $this->players->removeElement($player);
+    }
+
+    /**
+     * Get players
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlayers()
+    {
+        return $this->players;
+    }
+}

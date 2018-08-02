@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Player
  *
- * @ORM\Table(name="player")
+ * @ORM\Table(name="players")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PlayerRepository")
  */
 class Player
@@ -69,7 +69,19 @@ class Player
      * @ORM\Column(name="AR", type="integer")
      */
     private $aR;
-
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Race", inversedBy="players")
+     * @ORM\JoinColumn(nullable=false)
+     * @var AppBundle\Entity\Race
+     */
+    private $race;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Skill", mappedBy="players")
+     * @var UserBundle\Entity\Skill[]
+     */
+    private $skills;
 
     /**
      * Get id
@@ -248,5 +260,69 @@ class Player
     {
         return $this->aR;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->skills = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Set race
+     *
+     * @param \AppBundle\Entity\Race $race
+     *
+     * @return Player
+     */
+    public function setRace(\AppBundle\Entity\Race $race)
+    {
+        $this->race = $race;
+
+        return $this;
+    }
+
+    /**
+     * Get race
+     *
+     * @return \AppBundle\Entity\Race
+     */
+    public function getRace()
+    {
+        return $this->race;
+    }
+
+    /**
+     * Add skill
+     *
+     * @param \AppBundle\Entity\Skill $skill
+     *
+     * @return Player
+     */
+    public function addSkill(\AppBundle\Entity\Skill $skill)
+    {
+        $this->skills[] = $skill;
+
+        return $this;
+    }
+
+    /**
+     * Remove skill
+     *
+     * @param \AppBundle\Entity\Skill $skill
+     */
+    public function removeSkill(\AppBundle\Entity\Skill $skill)
+    {
+        $this->skills->removeElement($skill);
+    }
+
+    /**
+     * Get skills
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSkills()
+    {
+        return $this->skills;
+    }
+}

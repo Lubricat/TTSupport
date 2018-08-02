@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Skill
  *
- * @ORM\Table(name="skill")
+ * @ORM\Table(name="skills")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SkillRepository")
  */
 class Skill
@@ -41,7 +41,12 @@ class Skill
      * @ORM\Column(name="category", type="string", length=1)
      */
     private $category;
-
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Player", inversedBy="skills")
+     * @var AppBundle\Entity\Player[]
+     */
+    private $players;
 
     /**
      * Get id
@@ -124,5 +129,45 @@ class Skill
     {
         return $this->category;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->players = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add player
+     *
+     * @param \AppBundle\Entity\Player $player
+     *
+     * @return Skill
+     */
+    public function addPlayer(\AppBundle\Entity\Player $player)
+    {
+        $this->players[] = $player;
+
+        return $this;
+    }
+
+    /**
+     * Remove player
+     *
+     * @param \AppBundle\Entity\Player $player
+     */
+    public function removePlayer(\AppBundle\Entity\Player $player)
+    {
+        $this->players->removeElement($player);
+    }
+
+    /**
+     * Get players
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlayers()
+    {
+        return $this->players;
+    }
+}

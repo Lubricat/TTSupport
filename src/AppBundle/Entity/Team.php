@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Team
  *
- * @ORM\Table(name="team")
+ * @ORM\Table(name="teams")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TeamRepository")
  */
 class Team
@@ -59,9 +59,9 @@ class Team
     /**
      * @var int
      *
-     * @ORM\Column(name="pompo", type="integer")
+     * @ORM\Column(name="pompom", type="integer")
      */
-    private $pompo;
+    private $pompom;
 
     /**
      * @var int
@@ -83,6 +83,19 @@ class Team
      * @ORM\Column(name="apo", type="boolean")
      */
     private $apo;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Coatch", inversedBy="teams")
+     * @ORM\JoinColumn(nullable=false)
+     * @var AppBundle\Entity\Coatch
+     */
+    private $coatch;
+    
+    /**
+    * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Race")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $race;
 
 
     /**
@@ -216,27 +229,27 @@ class Team
     }
 
     /**
-     * Set pompo
+     * Set pompom
      *
-     * @param integer $pompo
+     * @param integer $pompom
      *
      * @return Team
      */
-    public function setPompo($pompo)
+    public function setPompom($pompom)
     {
-        $this->pompo = $pompo;
+        $this->pompom = $pompom;
 
         return $this;
     }
 
     /**
-     * Get pompo
+     * Get pompom
      *
      * @return int
      */
-    public function getPompo()
+    public function getPompom()
     {
-        return $this->pompo;
+        return $this->pompom;
     }
 
     /**
@@ -310,5 +323,52 @@ class Team
     {
         return $this->apo;
     }
-}
 
+    /**
+     * Set coatch
+     *
+     * @param \AppBundle\Entity\Coatch $coatch
+     *
+     * @return Team
+     */
+    public function setCoatch(\AppBundle\Entity\Coatch $coatch)
+    {
+        $this->coatch = $coatch;
+
+        return $this;
+    }
+
+    /**
+     * Get coatch
+     *
+     * @return \AppBundle\Entity\Coatch
+     */
+    public function getCoatch()
+    {
+        return $this->coatch;
+    }
+
+    /**
+     * Set race
+     *
+     * @param \AppBundle\Entity\Race $race
+     *
+     * @return Team
+     */
+    public function setRace(\AppBundle\Entity\Race $race)
+    {
+        $this->race = $race;
+
+        return $this;
+    }
+
+    /**
+     * Get race
+     *
+     * @return \AppBundle\Entity\Race
+     */
+    public function getRace()
+    {
+        return $this->race;
+    }
+}
