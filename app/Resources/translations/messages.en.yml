@@ -1,0 +1,4 @@
+authentication:
+    username: login
+    password: mot de passe
+    login: connection
