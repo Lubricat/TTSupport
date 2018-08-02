@@ -31,7 +31,7 @@ class RollerController extends BaseAdminController
     {
         $blue = $dark = $green = $purple = $yellow = $red = $forcedie = 0;
         
-        return $this->render('board.html.twig',
+        return $this->render('eote/board.html.twig',
             [
                 'dicelist' => [['green', 'yellow', 'blue'], ['purple', 'red', 'dark'], ['force']],
                 'blue' => $blue,

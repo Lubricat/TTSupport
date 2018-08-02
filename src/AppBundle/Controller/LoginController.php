@@ -15,8 +15,15 @@ class LoginController extends Controller
     */
     public function homeAction()
     {
-    dump('test');
-//        return $this->redirectToRoute('roll_dashboard', [], 301);
+        $exception = $this->get('security.authentication_utils')
+            ->getLastAuthenticationError();
+
+	return $this->render('default/index.html.twig', [
+            'error' => $exception ? $exception->getMessage() : NULL,
+	    'urls' => ['BB scoreboard' => $this->generateUrl('app_default_bb'),
+	    	'Star Wars' => $this->generateUrl('roll_dashboard'),
+	    ]
+        ]);
     }
     
     /**
