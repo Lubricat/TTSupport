@@ -71,11 +71,17 @@
     "symfony/http-kernel": {
         "version": "v3.4.20"
     },
+    "symfony/inflector": {
+        "version": "v3.4.20"
+    },
     "symfony/polyfill-apcu": {
         "version": "v1.10.0"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.10.0"
+    },
+    "symfony/property-access": {
+        "version": "v3.4.20"
     },
     "symfony/routing": {
         "version": "3.3",
@@ -84,6 +90,18 @@
             "branch": "master",
             "version": "3.3",
             "ref": "4d36f55d8edd7bd88b730754c2d3f3dfc2cd316b"
+        }
+    },
+    "symfony/security": {
+        "version": "v3.4.20"
+    },
+    "symfony/security-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "f8a63faa0d9521526499c0a8f403c9964ecb0527"
         }
     },
     "symfony/yaml": {
