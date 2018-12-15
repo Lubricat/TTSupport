@@ -2,7 +2,7 @@
 <html style="height: 100%;">
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}{{ "BloodBowl"|trans }}{% endblock %}</title>
+        <title>{% block title %}{{ "Tabletop Support"|trans }}{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -20,7 +20,7 @@
     <body style="background:url('img/bb-bg.jpg') no-repeat; background-size:cover; height: 100%">
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
-        <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-        <!--<script src="{{ asset('js/bootstrap.min.js') }}"></script>-->
+        <!-- <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>-->
     </body>
 </html>

@@ -38,6 +38,17 @@
 {% endblock %}
 
 {% block body_javascript %}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-62527606-2"></script>
+<script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag(){dataLayer.push(arguments);}
+   gtag('js', new Date());
+
+   gtag('config', 'UA-62527606-2');
+</script>
+
+
 <script type='text/javascript'>
 var runner = false;
 var users = [{% for key, user in users %}{{ user.id }},{% endfor %}];

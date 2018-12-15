@@ -20,7 +20,7 @@ class LoginController extends Controller
 
 	return $this->render('default/index.html.twig', [
             'error' => $exception ? $exception->getMessage() : NULL,
-	    'urls' => ['BB scoreboard' => $this->generateUrl('app_default_bb'),
+	    'urls' => ['Blood Bowl' => $this->generateUrl('app_default_bb'),
 	    	'Star Wars' => $this->generateUrl('roll_dashboard'),
 	    ]
         ]);
